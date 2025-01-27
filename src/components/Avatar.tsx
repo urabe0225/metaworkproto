@@ -9,9 +9,10 @@ interface AvatarProps {
   position: [number, number, number]
   vrm: string
   scale?: number
+  rotation?: [number, number, number]
 }
 
-const Avatar: React.FC<AvatarProps> = ({ position, vrm, scale }) => {
+const Avatar: React.FC<AvatarProps> = ({ position, vrm, scale, rotation }) => {
   const { ...controls } = useControls({
     Head: { value: 0, min: -0.4, max: 0.4 },
     leftArm: { value: 0.4, min: -0.4, max: 0.4 },
@@ -118,7 +119,7 @@ const Avatar: React.FC<AvatarProps> = ({ position, vrm, scale }) => {
     <>
       {gltf ? (
         <>
-        <primitive object={gltf.scene} position={position} scale={scale} />
+        <primitive object={gltf.scene} position={position} scale={scale} rotation={rotation}/>
         </>
       ) : (
         <>
