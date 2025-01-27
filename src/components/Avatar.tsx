@@ -8,9 +8,10 @@ import { Object3D } from 'three'
 interface AvatarProps {
   position: [number, number, number]
   vrm: string
+  scale?: number
 }
 
-const Avatar: React.FC<AvatarProps> = ({ position, vrm }) => {
+const Avatar: React.FC<AvatarProps> = ({ position, vrm, scale }) => {
   const { ...controls } = useControls({
     Head: { value: 0, min: -0.4, max: 0.4 },
     leftArm: { value: 0.4, min: -0.4, max: 0.4 },
@@ -117,7 +118,7 @@ const Avatar: React.FC<AvatarProps> = ({ position, vrm }) => {
     <>
       {gltf ? (
         <>
-        <primitive object={gltf.scene} position={position} />
+        <primitive object={gltf.scene} position={position} scale={scale} />
         </>
       ) : (
         <>

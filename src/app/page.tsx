@@ -28,8 +28,8 @@ const App = () => {
         <gridHelper />
         <Suspense fallback={null}>
           <Avatar position={[0, 0, 0]} vrm={'/AliciaSolid.vrm'}/>
-          <Avatar position={[0, 0, -1]} vrm={'/bot-male.vrm'}/>
-          <Avatar position={[1, 0, 0]} vrm={'/three-vrm-girl.vrm'}/>
+          <Avatar position={[0, 0, -1]} vrm={'/bot-male.vrm'} scale={0.5} />
+          <Avatar position={[1, 0, 0]} vrm={'/three-vrm-girl.vrm'} />
         </Suspense>
       </Canvas>
     </Container>
