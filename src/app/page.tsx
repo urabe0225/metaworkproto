@@ -1,12 +1,14 @@
 'use client'
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { Box, OrbitControls } from '@react-three/drei'
 import styled from 'styled-components'
-
-import Avatar from '@/components/Avatar'
+import Avatar from '@/components/SittingAvatar'
+import Camera from '@/components/Camera'
+import VideoTexture from '@/components/VideoTexture'
 
 const App = () => {
+  const [video, setVideo] = useState(null);
   return (
     <Container>
       <Canvas 
@@ -28,10 +30,15 @@ const App = () => {
         <gridHelper />
         <Suspense fallback={null}>
           <Avatar position={[-1, 0, 0]} vrm={'/AliciaSolid.vrm'} rotation={[0, -Math.PI/2, 0]} />
-          <Avatar position={[0, 0, -1]} vrm={'/bot-male.vrm'} scale={0.5} />
+          <Avatar position={[0, 0, -1]} vrm={'/bot-male.vrm'} scale={0.7} />
           <Avatar position={[1, 0, 0]} vrm={'/three-vrm-girl.vrm'} rotation={[0, Math.PI/2, 0]} />
+          <Box args={[0.5, 0.5, 0.5]} position={[1, 0.5, 0]} />
+          <Box args={[0.5, 0.5, 0.5]} position={[-1, 0.5, 0]} />
+          <Box args={[0.5, 0.3, 0.5]} position={[0, 0.4, -1]} />
+          <Camera video={video} position={[0, 2, -2]} rotation={[0, 0, 0]} />
         </Suspense>
       </Canvas>
+      <VideoTexture onLoaded={setVideo} />
     </Container>
   )
 }
@@ -41,4 +48,5 @@ const Container = styled.div`
   height: 100vh;
 `
 
-export default App;
+
+export default App
