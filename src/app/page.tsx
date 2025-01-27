@@ -1,12 +1,10 @@
 'use client'
-import React, { Suspense, useRef, useEffect, useLayoutEffect  } from 'react'
-import { useState } from 'react';
-import { Canvas, MeshProps, useFrame, ThreeEvent } from '@react-three/fiber'
-import { Stats, OrbitControls } from '@react-three/drei'
-import * as THREE from 'three'
+import React, { Suspense } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
 import styled from 'styled-components'
 
-import SampleBox from '@/components/SampleBox'
+import Avatar from '@/components/Avatar'
 
 const App = () => {
   return (
@@ -20,15 +18,19 @@ const App = () => {
             position: [
               0,//x座標, 
               2,//y座標, 
-              -3//z座標
+              2//z座標
             ] 
           } 
         }>
         <ambientLight intensity={0.65} />
         <spotLight position={[0, 2, -1]} intensity={0.4} />
-        <SampleBox />
         <OrbitControls />
         <gridHelper />
+        <Suspense fallback={null}>
+          <Avatar position={[0, 0, 0]} vrm={'/AliciaSolid.vrm'}/>
+          <Avatar position={[0, 0, -1]} vrm={'/bot-male.vrm'}/>
+          <Avatar position={[1, 0, 0]} vrm={'/three-vrm-girl.vrm'}/>
+        </Suspense>
       </Canvas>
     </Container>
   )
